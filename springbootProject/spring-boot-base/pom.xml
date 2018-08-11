@@ -66,17 +66,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--shiro-->
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-core</artifactId>
-			<version>${shiro.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-spring</artifactId>
-			<version>${shiro.version}</version>
-		</dependency>
+
         <!--阿里 Druid Spring Boot Starter依赖-->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -117,10 +107,10 @@
         <!-- 项目其他模块依赖 -->
         <dependency>
             <groupId>krista.spring.boot</groupId>
-            <artifactId>springbootProject-dao</artifactId>
+            <artifactId>springbootProject-service</artifactId>
             <version>${project.version}</version>
         </dependency>
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>

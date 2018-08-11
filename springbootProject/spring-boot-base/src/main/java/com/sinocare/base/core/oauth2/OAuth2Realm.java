@@ -1,8 +1,8 @@
 package com.sinocare.base.core.oauth2;
 
-import com.sinocare.base.service.sys.ShiroService;
 import com.krista.spring.boot.model.SysUser;
 import com.krista.spring.boot.model.SysUserToken;
+import com.krista.spring.boot.service.ShiroService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

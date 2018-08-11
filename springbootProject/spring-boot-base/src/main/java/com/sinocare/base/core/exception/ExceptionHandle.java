@@ -1,8 +1,9 @@
 package com.sinocare.base.core.exception;
 
-import com.sinocare.base.core.result.Result;
-import com.sinocare.base.core.result.ResultCode;
-import com.sinocare.base.core.result.ResultUtil;
+import com.krista.spring.boot.dto.exception.ServiceException;
+import com.krista.spring.boot.dto.result.Result;
+import com.krista.spring.boot.dto.result.ResultCode;
+import com.sinocare.base.core.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.http.converter.HttpMessageNotReadableException;

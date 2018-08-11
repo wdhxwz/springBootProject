@@ -1,10 +1,10 @@
 package com.sinocare.base.web.sys;
 
-import com.sinocare.base.core.annotation.SysLogger;
-import com.sinocare.base.core.result.Result;
-import com.sinocare.base.core.result.ResultUtil;
-import com.sinocare.base.service.sys.ShiroService;
-import com.sinocare.base.service.sys.SysMenuService;
+import com.krista.spring.boot.dto.annotation.SysLogger;
+import com.krista.spring.boot.dto.result.Result;
+import com.krista.spring.boot.service.ShiroService;
+import com.krista.spring.boot.service.SysMenuService;
+import com.sinocare.base.core.util.ResultUtil;
 import io.swagger.annotations.Api;
 import com.krista.spring.boot.model.SysMenu;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

@@ -1,10 +1,10 @@
 package com.sinocare.base.web.sys;
 
-import com.sinocare.base.core.annotation.SysLogger;
-import com.sinocare.base.core.result.Result;
-import com.sinocare.base.core.result.ResultUtil;
-import com.sinocare.base.service.sys.SysUserService;
-import com.sinocare.base.service.sys.SysUserTokenService;
+import com.krista.spring.boot.dto.annotation.SysLogger;
+import com.krista.spring.boot.dto.result.Result;
+import com.krista.spring.boot.service.SysUserService;
+import com.krista.spring.boot.service.SysUserTokenService;
+import com.sinocare.base.core.util.ResultUtil;
 import io.swagger.annotations.Api;
 import com.krista.spring.boot.dto.user.LoginDto;
 import com.krista.spring.boot.model.SysUser;

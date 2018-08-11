@@ -1,6 +1,7 @@
 package com.sinocare.base.service.sys;
 
 import com.krista.spring.boot.model.SysUser;
+import com.krista.spring.boot.service.SysUserService;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.junit.Test;
 import org.junit.runner.RunWith;

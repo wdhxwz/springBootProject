@@ -1,10 +1,10 @@
 package com.sinocare.base.core.oauth2;
 
 import com.alibaba.fastjson.JSON;
-import com.sinocare.base.core.result.Result;
-import com.sinocare.base.core.result.ResultCode;
-import com.sinocare.base.core.result.ResultUtil;
+import com.krista.spring.boot.dto.result.Result;
+import com.krista.spring.boot.dto.result.ResultCode;
 import com.sinocare.base.core.util.HttpContextUtils;
+import com.sinocare.base.core.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;

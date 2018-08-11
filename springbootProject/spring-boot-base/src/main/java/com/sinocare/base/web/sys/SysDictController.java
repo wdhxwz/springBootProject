@@ -2,12 +2,12 @@ package com.sinocare.base.web.sys;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.sinocare.base.core.result.Result;
-import com.sinocare.base.core.result.ResultUtil;
-import com.sinocare.base.service.sys.SysDictService;
 import com.krista.spring.boot.dto.common.IdVo;
 import com.krista.spring.boot.dto.common.PageVo;
+import com.krista.spring.boot.dto.result.Result;
 import com.krista.spring.boot.model.SysDict;
+import com.krista.spring.boot.service.SysDictService;
+import com.sinocare.base.core.util.ResultUtil;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

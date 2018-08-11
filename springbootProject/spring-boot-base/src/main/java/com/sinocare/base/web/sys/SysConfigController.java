@@ -2,10 +2,10 @@ package com.sinocare.base.web.sys;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.sinocare.base.core.annotation.SysLogger;
-import com.sinocare.base.core.result.Result;
-import com.sinocare.base.core.result.ResultUtil;
-import com.sinocare.base.service.sys.SysConfigService;
+import com.krista.spring.boot.dto.annotation.SysLogger;
+import com.krista.spring.boot.dto.result.Result;
+import com.krista.spring.boot.service.SysConfigService;
+import com.sinocare.base.core.util.ResultUtil;
 import io.swagger.annotations.Api;
 import com.krista.spring.boot.dto.common.IdVo;
 import com.krista.spring.boot.dto.common.PageVo;

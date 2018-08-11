@@ -1,12 +1,12 @@
 package com.sinocare.base.core.aspect;
 
 import com.alibaba.fastjson.JSON;
-import com.sinocare.base.core.annotation.SysLogger;
-import com.sinocare.base.core.util.HttpContextUtils;
-import com.sinocare.base.core.util.IPUtils;
-import com.sinocare.base.service.log.SysLogService;
+import com.krista.spring.boot.dto.annotation.SysLogger;
 import com.krista.spring.boot.model.SysLog;
 import com.krista.spring.boot.model.SysUser;
+import com.krista.spring.boot.service.SysLogService;
+import com.sinocare.base.core.util.HttpContextUtils;
+import com.sinocare.base.core.util.IPUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -17,24 +17,24 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Date;
 
 /**
  * Description: spring-boot-base
- * Created by jeikerxiao on 2018/6/28 上午11:45
  */
 @Aspect
 @Component
 @Slf4j
 public class SysLoggerAspect {
 
-    @Autowired
+    @Resource
     private SysLogService sysLogService;
 
     // 切点（注解为切点）
-    @Pointcut("@annotation(com.sinocare.base.core.annotation.SysLogger)")
+    @Pointcut("@annotation(com.krista.spring.boot.dto.annotation.SysLogger)")
     public void logPointCut() {
 
     }

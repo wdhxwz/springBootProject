@@ -3,10 +3,12 @@ package com.sinocare.base;
 import com.spring4all.swagger.EnableSwagger2Doc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @EnableSwagger2Doc
 @MapperScan(basePackages = {"com.krista.spring.boot.dao"})
+@ComponentScan(basePackages = {"com.krista.spring.boot.service.impl","com.sinocare.base"})
 @SpringBootApplication
 public class SpringBootBaseApplication {
 

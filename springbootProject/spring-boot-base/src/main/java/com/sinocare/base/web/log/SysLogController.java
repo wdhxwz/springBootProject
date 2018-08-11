@@ -2,13 +2,13 @@ package com.sinocare.base.web.log;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.sinocare.base.core.result.Result;
-import com.sinocare.base.core.result.ResultUtil;
-import com.sinocare.base.service.log.SysLogService;
 import com.krista.spring.boot.dto.common.IdVo;
 import com.krista.spring.boot.dto.common.PageVo;
 import com.krista.spring.boot.dto.log.SysLogDto;
+import com.krista.spring.boot.dto.result.Result;
 import com.krista.spring.boot.model.SysLog;
+import com.krista.spring.boot.service.SysLogService;
+import com.sinocare.base.core.util.ResultUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.PostMapping;
