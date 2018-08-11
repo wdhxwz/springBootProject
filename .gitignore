@@ -1,0 +1,6 @@
+springbootProject/springbootProject-model/target/
+springbootProject/springbootProject-dao/target/maven-archiver/pom.properties
+springbootProject/springbootProject-dao/target/
+springbootProject/springbootProject-utils/target/
+springbootProject/.idea/
+*.iml
