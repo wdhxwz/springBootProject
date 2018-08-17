@@ -57,7 +57,11 @@ public class OAuth2Realm extends AuthorizingRealm {
         String accessToken = (String) token.getPrincipal();
 
         // 根据Token，查询用户信息
+        // TODO : 可以将Token信息进行缓存
+        // TODO : Token的有效期是否自动延期
         SysUserToken userToken = shiroService.queryByToken(accessToken);
+
+
         // token失效
         if(userToken == null || userToken.getExpireTime().getTime() < System.currentTimeMillis()){
             throw new IncorrectCredentialsException("token失效, 请重新登录");

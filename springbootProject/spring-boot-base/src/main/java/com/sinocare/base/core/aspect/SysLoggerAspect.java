@@ -46,61 +46,72 @@ public class SysLoggerAspect {
         Object result = point.proceed();
         //执行时长(毫秒)
         long time = System.currentTimeMillis() - beginTime;
+
         //保存日志
-        saveSysLog(point, time);
+        new SaveSysLogThread(point, time).run();
+
         return result;
     }
 
-    // TODO 这里搞成异步执行
-    private void saveSysLog(ProceedingJoinPoint joinPoint, long time) {
-        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-        Method method = signature.getMethod();
-
-        SysLog sysLog = new SysLog();
-        SysLogger sysLogger = method.getAnnotation(SysLogger.class);
-        if (sysLogger != null) {
-            //注解上的描述
-            sysLog.setOperation(sysLogger.value());
+    public class SaveSysLogThread implements Runnable{
+        private ProceedingJoinPoint joinPoint;
+        private long time;
+        public SaveSysLogThread(ProceedingJoinPoint joinPoint, long time){
+            this.joinPoint = joinPoint;
+            this.time = time;
         }
 
-        // 请求的方法名
-        String className = joinPoint.getTarget().getClass().getName();
-        String methodName = signature.getName();
-        sysLog.setMethod(className + "." + methodName + "()");
+        @Override
+        public void run() {
+            MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+            Method method = signature.getMethod();
 
-        // 请求的参数
-        Object[] args = joinPoint.getArgs();
-        try {
-            if (args.length > 0) {
-                String params = JSON.toJSONString(args[0]);
-                sysLog.setParams(params);
+            SysLog sysLog = new SysLog();
+            SysLogger sysLogger = method.getAnnotation(SysLogger.class);
+            if (sysLogger != null) {
+                //注解上的描述
+                sysLog.setOperation(sysLogger.value());
             }
-        } catch (Exception e) {
-            log.error("@SysLogger toJSONString error {}", e);
-        }
 
-        // 获取request
-        HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
-        // 获取IP地址
-        sysLog.setIp(IPUtils.getIpAddr(request));
+            // 请求的方法名
+            String className = joinPoint.getTarget().getClass().getName();
+            String methodName = signature.getName();
+            sysLog.setMethod(className + "." + methodName + "()");
 
-        // 用户名
-        try {
-            // 登录失效时获取到的用户信息是null
-            SysUser sysUser = (SysUser) SecurityUtils.getSubject().getPrincipal();
-            if (sysUser != null) {
-                String username = sysUser.getUsername();
-                sysLog.setUsername(username);
-            } else {
-                sysLog.setUsername("获取不到用户信息");
+            // 请求的参数
+            Object[] args = joinPoint.getArgs();
+            try {
+                if (args.length > 0) {
+                    String params = JSON.toJSONString(args[0]);
+                    sysLog.setParams(params);
+                }
+            } catch (Exception e) {
+                log.error("@SysLogger toJSONString error {}", e);
             }
-        } catch (Exception e) {
-            log.error("@SysLogger get username error {}", e);
-        }
 
-        sysLog.setTime(time);
-        sysLog.setCreateDate(new Date());
-        //保存系统日志
-        sysLogService.save(sysLog);
+            // 获取request
+            HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
+            // 获取IP地址
+            sysLog.setIp(IPUtils.getIpAddr(request));
+
+            // 用户名
+            try {
+                // 登录失效时获取到的用户信息是null
+                SysUser sysUser = (SysUser) SecurityUtils.getSubject().getPrincipal();
+                if (sysUser != null) {
+                    String username = sysUser.getUsername();
+                    sysLog.setUsername(username);
+                } else {
+                    sysLog.setUsername("获取不到用户信息");
+                }
+            } catch (Exception e) {
+                log.error("@SysLogger get username error {}", e);
+            }
+
+            sysLog.setTime(time);
+            sysLog.setCreateDate(new Date());
+            //保存系统日志
+            sysLogService.save(sysLog);
+        }
     }
 }
