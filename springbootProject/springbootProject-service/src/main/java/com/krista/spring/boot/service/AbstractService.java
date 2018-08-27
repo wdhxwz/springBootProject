@@ -11,7 +11,9 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 基于通用MyBatis Mapper插件的Service接口的实现
@@ -24,9 +26,16 @@ public abstract class AbstractService<T> implements Service<T> {
 
     private Class<T> modelClass;    // 当前泛型真实类型的Class
 
+    private Map<String,Field> fieldMap = new HashMap<>();
+
     public AbstractService() {
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
         modelClass = (Class<T>) pt.getActualTypeArguments()[0];
+        Field[] fields = modelClass.getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            fieldMap.put(field.getName(),field);
+        }
     }
 
     public void save(T model) {
@@ -65,8 +74,10 @@ public abstract class AbstractService<T> implements Service<T> {
     public T findBy(String fieldName, Object value) throws TooManyResultsException {
         try {
             T model = modelClass.newInstance();
-            Field field = modelClass.getDeclaredField(fieldName);
-            field.setAccessible(true);
+            Field field = fieldMap.get(fieldName);
+            if(field == null){
+                return null;
+            }
             field.set(model, value);
             return mapper.selectOne(model);
         } catch (ReflectiveOperationException e) {
