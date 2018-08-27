@@ -69,4 +69,10 @@ public class SysConfigController {
         PageInfo pageInfo = new PageInfo(list);
         return ResultUtil.success(pageInfo);
     }
+
+    @GetMapping("/sysConfig")
+    public Result sysConfig(){
+        SysConfig sysConfig = sysConfigService.findBy("paramKey","projectName");
+        return ResultUtil.success(sysConfig);
+    }
 }
