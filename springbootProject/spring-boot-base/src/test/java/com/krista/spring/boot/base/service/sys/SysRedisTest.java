@@ -1,10 +1,8 @@
 package com.krista.spring.boot.base.service.sys;
 
-import com.krista.spring.boot.base.core.redis.RedisKeys;
-import com.krista.spring.boot.base.core.redis.RedisUtils;
-import com.krista.spring.boot.base.core.redis.RedisKeys;
-import com.krista.spring.boot.base.core.redis.RedisUtils;
+import com.krista.spring.boot.dao.redis.RedisUtils;
 import com.krista.spring.boot.model.SysCaptcha;
+import com.krista.spring.boot.utils.RedisKeys;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

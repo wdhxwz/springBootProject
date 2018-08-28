@@ -23,7 +23,6 @@ import java.util.List;
 @Service
 @Transactional
 public class SysRoleServiceImpl extends AbstractService<SysRole> implements SysRoleService {
-
     @Resource
     private SysRoleMapper sysRoleMapper;
     @Autowired

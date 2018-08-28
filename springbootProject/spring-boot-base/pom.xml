@@ -55,10 +55,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
 		<!-- 测试 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -66,19 +62,13 @@
 			<scope>test</scope>
 		</dependency>
 
-
         <!--阿里 Druid Spring Boot Starter依赖-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>${druid.version}</version>
         </dependency>
-		<!--阿里 FastJson依赖-->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>${fastjson.version}</version>
-		</dependency>
+
 		<!-- swagger -->
 		<dependency>
 			<groupId>com.spring4all</groupId>

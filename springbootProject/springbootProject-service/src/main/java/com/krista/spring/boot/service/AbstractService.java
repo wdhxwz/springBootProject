@@ -27,6 +27,7 @@ public abstract class AbstractService<T> implements Service<T> {
     private Class<T> modelClass;    // 当前泛型真实类型的Class
 
     private Map<String,Field> fieldMap = new HashMap<>();
+    private String className = "";
 
     public AbstractService() {
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
@@ -35,6 +36,11 @@ public abstract class AbstractService<T> implements Service<T> {
         for (Field field : fields) {
             field.setAccessible(true);
             fieldMap.put(field.getName(),field);
+        }
+        if (modelClass.getSimpleName().contains("Sys")) {
+            className = "sys:" + modelClass.getSimpleName();
+        } else {
+            className = modelClass.getSimpleName();
         }
     }
 

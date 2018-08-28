@@ -135,6 +135,7 @@ Caused by: java.lang.NoSuchMethodException: tk.mybatis.mapper.provider.Condition
 	at java.lang.Class.getConstructor0(Class.java:3082)
 	at java.lang.Class.newInstance(Class.java:412)
 	... 120 more
+5. 登录后，将token信息保存到数据库和Redis，每次验证的时候只从Redis获取，token的有效期为12h
 
 
 

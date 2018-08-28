@@ -1,4 +1,4 @@
-package com.krista.spring.boot.base.core.redis;
+package com.krista.spring.boot.utils;
 
 /**
  * Description: Redis 统一Key管理
@@ -10,4 +10,7 @@ public class RedisKeys {
         return "sys:captcha:" + key;
     }
 
+    public static String getTokenKey(String key){
+        return "sys:token:" + key;
+    }
 }

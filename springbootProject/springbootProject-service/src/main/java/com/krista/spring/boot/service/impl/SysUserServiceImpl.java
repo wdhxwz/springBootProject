@@ -44,6 +44,8 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
     @Override
     @Transactional
     public void add(SysUser user) {
+        checkUserName(user.getUsername());
+
         //sha256加密
         String salt = RandomStringUtils.randomAlphanumeric(20);
         user.setPassword(new Sha256Hash(MD5Utils.getMD5Code(user.getPassword()), salt).toHex());
@@ -148,6 +150,13 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
         //判断是否越权
         if(!roleIdList.containsAll(user.getRoleIdList())){
             throw new ServiceException(ResultCode.USER_ROLE_ERROR);
+        }
+    }
+
+    private void checkUserName(String userName){
+        SysUser sysUser = queryByUserName(userName);
+        if(sysUser != null){
+            throw new ServiceException(ResultCode.USER_REGISTERED);
         }
     }
 }

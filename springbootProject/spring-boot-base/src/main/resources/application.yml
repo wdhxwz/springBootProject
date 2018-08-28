@@ -37,9 +37,9 @@ spring:
           log-slow-sql: true
   redis:
     database: 1
-    host: 192.168.234.97
-    port: 6379
-    password: 123456    # 密码（默认为空）
+    host: 127.0.0.1
+    port: 6719
+    # password: 123456    # 密码（默认为空）
     timeout: 60000       # 连接超时时长（毫秒）
   # 国际化
   messages:

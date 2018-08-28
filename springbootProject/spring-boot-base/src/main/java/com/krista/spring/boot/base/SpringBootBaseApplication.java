@@ -8,7 +8,10 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @EnableSwagger2Doc
 @MapperScan(basePackages = {"com.krista.spring.boot.dao"})
-@ComponentScan(basePackages = {"com.krista.spring.boot.service.impl","com.krista.spring.boot.base"})
+@ComponentScan(basePackages = {
+        "com.krista.spring.boot.service.impl",
+        "com.krista.spring.boot.base",
+        "com.krista.spring.boot.dao.redis"})
 @SpringBootApplication
 public class SpringBootBaseApplication {
 

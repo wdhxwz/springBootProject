@@ -3,6 +3,7 @@ package com.krista.spring.boot.service.impl;
 import com.krista.spring.boot.dao.SysMenuMapper;
 import com.krista.spring.boot.dao.SysUserMapper;
 import com.krista.spring.boot.dao.SysUserTokenMapper;
+import com.krista.spring.boot.dao.redis.RedisUtils;
 import com.krista.spring.boot.model.SysMenu;
 import com.krista.spring.boot.model.SysUser;
 import com.krista.spring.boot.model.SysUserToken;
@@ -23,6 +24,8 @@ public class ShiroServiceImpl implements ShiroService {
     private SysUserMapper sysUserMapper;
     @Resource
     private SysUserTokenMapper sysUserTokenMapper;
+    @Autowired
+    private RedisUtils redisUtils;
 
     @Autowired
     private SysUserService sysUserService;
@@ -54,7 +57,10 @@ public class ShiroServiceImpl implements ShiroService {
 
     @Override
     public SysUserToken queryByToken(String token) {
-        return sysUserTokenMapper.queryByToken(token);
+        SysUserToken sysUserToken = redisUtils.get(token,SysUserToken.class);
+
+        return sysUserToken;
+        // return sysUserTokenMapper.queryByToken(token);
     }
 
     @Override

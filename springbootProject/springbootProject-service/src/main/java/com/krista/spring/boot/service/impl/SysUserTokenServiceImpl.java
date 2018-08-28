@@ -1,10 +1,12 @@
 package com.krista.spring.boot.service.impl;
 
 import com.krista.spring.boot.dao.SysUserTokenMapper;
+import com.krista.spring.boot.dao.redis.RedisUtils;
 import com.krista.spring.boot.model.SysUserToken;
 import com.krista.spring.boot.service.AbstractService;
 import com.krista.spring.boot.service.SysUserTokenService;
 import com.krista.spring.boot.service.shiro.TokenGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +29,9 @@ public class SysUserTokenServiceImpl extends AbstractService<SysUserToken> imple
 
     @Resource
     private SysUserTokenMapper sysUserTokenMapper;
+
+    @Autowired
+    private RedisUtils redisUtils;
 
     @Override
     public SysUserToken createToken(long userId) {
@@ -55,6 +60,10 @@ public class SysUserTokenServiceImpl extends AbstractService<SysUserToken> imple
             //更新token
             sysUserTokenMapper.updateByPrimaryKeySelective(userToken);
         }
+
+        redisUtils.set(token,userToken,EXPIRE);
+
+
         return userToken;
     }
 
