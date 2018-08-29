@@ -31,18 +31,19 @@ public class SysConfigController {
     @Resource
     private SysConfigService sysConfigService;
 
+    @SysLogger("新增配置")
     @PostMapping("/add")
     @RequiresPermissions("sys:config:add")
     public Result add(@RequestBody SysConfig sysConfig) {
-        sysConfigService.save(sysConfig);
+        sysConfigService.add(sysConfig);
         return ResultUtil.success();
     }
 
     @SysLogger("删除配置")
     @PostMapping("/delete")
     @RequiresPermissions("sys:config:delete")
-    public Result delete(@RequestBody IdVo idVo) {
-        sysConfigService.deleteById(idVo.getId());
+    public Result delete(@RequestBody List<String> ids) {
+        sysConfigService.batchDelete(ids);
         return ResultUtil.success();
     }
 

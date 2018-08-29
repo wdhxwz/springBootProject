@@ -20,6 +20,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Description: spring-boot-base
@@ -31,6 +33,8 @@ public class SysLoggerAspect {
 
     @Resource
     private SysLogService sysLogService;
+
+    private static ExecutorService threadPool = Executors.newFixedThreadPool(4);
 
     // 切点（注解为切点）
     @Pointcut("@annotation(com.krista.spring.boot.dto.annotation.SysLogger)")
@@ -47,7 +51,7 @@ public class SysLoggerAspect {
         long time = System.currentTimeMillis() - beginTime;
 
         //保存日志
-        new SaveSysLogThread(point, time).run();
+        threadPool.submit(new SaveSysLogThread(point, time));
 
         return result;
     }

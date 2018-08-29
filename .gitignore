@@ -5,3 +5,4 @@ springbootProject/springbootProject-utils/target/
 springbootProject/.idea/
 *.iml
 springbootProject/springbootProject-service/target/
+*.log

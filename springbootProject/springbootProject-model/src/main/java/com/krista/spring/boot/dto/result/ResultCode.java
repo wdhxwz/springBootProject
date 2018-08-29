@@ -36,6 +36,8 @@ public enum ResultCode {
     TOKEN_INVALID(1022, "Token失效"),
     TOKEN_NO_PERMISSION(1022, "Token无操作权限"),
 
+    PARAMKEY_EXIST(1023,"参数key已存在"),
+
     ;
 
     private Integer code;

@@ -9,6 +9,7 @@ import com.krista.spring.boot.model.SysUser;
 import com.krista.spring.boot.model.SysUserToken;
 import com.krista.spring.boot.service.ShiroService;
 import com.krista.spring.boot.service.SysUserService;
+import com.krista.spring.boot.utils.RedisKeys;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,7 +58,7 @@ public class ShiroServiceImpl implements ShiroService {
 
     @Override
     public SysUserToken queryByToken(String token) {
-        SysUserToken sysUserToken = redisUtils.get(token,SysUserToken.class);
+        SysUserToken sysUserToken = redisUtils.get(RedisKeys.getTokenKey(token),SysUserToken.class);
 
         return sysUserToken;
         // return sysUserTokenMapper.queryByToken(token);
