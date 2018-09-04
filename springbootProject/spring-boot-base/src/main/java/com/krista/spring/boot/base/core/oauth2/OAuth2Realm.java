@@ -40,7 +40,8 @@ public class OAuth2Realm extends AuthorizingRealm {
         SysUser user = (SysUser)principals.getPrimaryPrincipal();
         Long userId = user.getUserId();
 
-        //用户权限列表
+        // 用户权限列表
+        // TODO 权限可以进行缓存
         Set<String> permsSet = shiroService.getUserPermissions(userId);
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         info.setStringPermissions(permsSet);
@@ -67,7 +68,9 @@ public class OAuth2Realm extends AuthorizingRealm {
         }
 
         // 查询用户信息
+        // TODO 这里将用户的权限信息缓存起来
         SysUser user = shiroService.queryUser(userToken.getUserId());
+
         // 账号锁定
         if(user.getStatus() == 0){
             throw new LockedAccountException("账号已被锁定, 请联系管理员");

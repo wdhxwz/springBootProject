@@ -1,7 +1,7 @@
 1.当一个用户有多个角色时，拥有的权限应该是所有角色的并集；【done】
 2.用户的角色配置应该更改为下拉多选，不应该是直接的复选框多选，避免角色太多时，界面放不下；
 3.如何统计出，接口层，service层，dao层各自的耗时
-4. 使用Condition进行数据查询的时候，会报下面错误：
+4.使用Condition进行数据查询的时候，会报下面错误：
 org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.builder.BuilderException: Error invoking SqlProvider method (tk.mybatis.mapper.provider.ConditionProvider.dynamicSQL).  Cause: java.lang.InstantiationException: tk.mybatis.mapper.provider.ConditionProvider
 	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:77)
 	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
@@ -135,8 +135,25 @@ Caused by: java.lang.NoSuchMethodException: tk.mybatis.mapper.provider.Condition
 	at java.lang.Class.getConstructor0(Class.java:3082)
 	at java.lang.Class.newInstance(Class.java:412)
 	... 120 more
-5. 登录后，将token信息保存到数据库和Redis，每次验证的时候只从Redis获取，token的有效期为12h
-
+5.登录后，将token信息保存到数据库和Redis，每次验证的时候只从Redis获取，token的有效期为12h
+6.Spring MVC/Spring Boot 集成Shiro权限管理框架
+7.Spring Boot集成Mybatis、通用mapper、分页插件、数据库连接池
+8.Json Web Tokens(JWT):
+    Payload:
+    {
+        "iss":"krista jwt", -- 签名发布者
+        "iat":"1441593502", -- 签名发布时间
+        "exp":"1441593502", -- 过期时间
+        "sub":"1", -- 该JWT面向的用户
+        "":"",
+        "":"",
+    }
+    Header：
+    {
+        "type":"jwt",
+        "alg":"hs256"
+    }
+    sign
 
 
 

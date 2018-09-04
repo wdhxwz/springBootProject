@@ -19,8 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Description: spring-boot-base
- * Created by jeikerxiao on 2018/6/27 下午5:04
+ * Description: Shiro Config
  */
 @Configuration
 public class ShiroConfig {
@@ -30,6 +29,8 @@ public class ShiroConfig {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionValidationSchedulerEnabled(true);
         sessionManager.setSessionIdCookieEnabled(true);
+        sessionManager.getSessionIdCookie().setName("sid");
+
         return sessionManager;
     }
 

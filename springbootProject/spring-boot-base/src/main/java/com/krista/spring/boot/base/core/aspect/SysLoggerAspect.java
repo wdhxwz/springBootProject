@@ -96,15 +96,6 @@ public class SysLoggerAspect {
                 log.error("@SysLogger toJSONString error {}", e);
             }
 
-//            try {
-//                // 获取request
-//                HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
-//                // 获取IP地址
-//                sysLog.setIp(IPUtils.getIpAddr(request));
-//            }catch (Exception ex){
-//                log.error(ex.getMessage(),ex);
-//            }
-
             sysLog.setIp(ip);
 
             // 用户名

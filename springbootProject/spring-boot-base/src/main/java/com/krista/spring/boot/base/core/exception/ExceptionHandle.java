@@ -30,40 +30,40 @@ public class ExceptionHandle {
     //运行时异常 1000
     @ExceptionHandler(RuntimeException.class)
     public Result runtimeExceptionHandler(RuntimeException ex) {
-        ex.printStackTrace();
+        log.error(ex.getMessage(),ex);
         return ResultUtil.failure(ResultCode.SERVER_RUNTIME);
     }
 
     //空指针异常 1001
     @ExceptionHandler(NullPointerException.class)
     public Result nullPointerExceptionHandler(NullPointerException ex) {
-        ex.printStackTrace();
+        log.error(ex.getMessage(),ex);
         return ResultUtil.failure(ResultCode.SERVER_NULL_POINTER);
     }
     //类型转换异常 1002
     @ExceptionHandler(ClassCastException.class)
     public Result classCastExceptionHandler(ClassCastException ex) {
-        ex.printStackTrace();
+        log.error(ex.getMessage(),ex);
         return ResultUtil.failure(ResultCode.SERVER_CLASS_CAST);
     }
 
     //IO异常 1003
     @ExceptionHandler(IOException.class)
     public Result iOExceptionHandler(IOException ex) {
-        ex.printStackTrace();
+        log.error(ex.getMessage(),ex);
         return ResultUtil.failure(ResultCode.SERVER_IO);
     }
     //未知方法异常 1004
     @ExceptionHandler(NoSuchMethodException.class)
     public Result noSuchMethodExceptionHandler(NoSuchMethodException ex) {
-        ex.printStackTrace();
+        log.error(ex.getMessage(),ex);
         return ResultUtil.failure(ResultCode.SERVER_NO_SUCH_METHOD);
     }
 
     //数组越界异常 1005
     @ExceptionHandler(IndexOutOfBoundsException.class)
     public Result indexOutOfBoundsExceptionHandler(IndexOutOfBoundsException ex) {
-        ex.printStackTrace();
+        log.error(ex.getMessage(),ex);
         return ResultUtil.failure(ResultCode.SERVER_INDEX_OUT_OF_BOUNDS);
     }
 
@@ -77,7 +77,6 @@ public class ExceptionHandle {
     // 无操作权限
     @ExceptionHandler({UnauthorizedException.class})
     public Result unauthorizedException(UnauthorizedException ex){
-        ex.printStackTrace();
         return ResultUtil.failure(ResultCode.TOKEN_NO_PERMISSION);
     }
 

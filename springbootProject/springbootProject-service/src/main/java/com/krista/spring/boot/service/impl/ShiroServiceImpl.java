@@ -23,8 +23,7 @@ public class ShiroServiceImpl implements ShiroService {
     private SysMenuMapper sysMenuMapper;
     @Resource
     private SysUserMapper sysUserMapper;
-    @Resource
-    private SysUserTokenMapper sysUserTokenMapper;
+
     @Autowired
     private RedisUtils redisUtils;
 
