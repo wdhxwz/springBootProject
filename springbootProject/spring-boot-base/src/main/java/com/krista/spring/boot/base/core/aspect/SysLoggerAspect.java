@@ -50,8 +50,10 @@ public class SysLoggerAspect {
         //执行时长(毫秒)
         long time = System.currentTimeMillis() - beginTime;
 
-        //保存日志
-        threadPool.submit(new SaveSysLogThread(point, time));
+        // 保存日志
+        //  TODO 通过新建线程进行日志保存，会获取不到request对象，因为此时请求已经被destroy掉了
+        threadPool.submit(new SaveSysLogThread(point, time,HttpContextUtils.getIp()));
+
 
         return result;
     }
@@ -59,9 +61,11 @@ public class SysLoggerAspect {
     public class SaveSysLogThread implements Runnable{
         private ProceedingJoinPoint joinPoint;
         private long time;
-        public SaveSysLogThread(ProceedingJoinPoint joinPoint, long time){
+        private String ip;
+        public SaveSysLogThread(ProceedingJoinPoint joinPoint, long time,String ip){
             this.joinPoint = joinPoint;
             this.time = time;
+            this.ip = ip;
         }
 
         @Override
@@ -92,14 +96,16 @@ public class SysLoggerAspect {
                 log.error("@SysLogger toJSONString error {}", e);
             }
 
-            try {
-                // 获取request
-                HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
-                // 获取IP地址
-                sysLog.setIp(IPUtils.getIpAddr(request));
-            }catch (Exception ex){
-                log.error(ex.getMessage(),ex);
-            }
+//            try {
+//                // 获取request
+//                HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
+//                // 获取IP地址
+//                sysLog.setIp(IPUtils.getIpAddr(request));
+//            }catch (Exception ex){
+//                log.error(ex.getMessage(),ex);
+//            }
+
+            sysLog.setIp(ip);
 
             // 用户名
             try {
