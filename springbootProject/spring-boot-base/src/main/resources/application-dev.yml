@@ -6,8 +6,8 @@ spring:
     druid:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://47.106.92.155/springBootBase?useSSL=false&useUnicode=true&characterEncoding=UTF-8
-      username: root
-      password: 1q2w#E$R
+      username: springboot
+      password: 1qaz1qaz
       initial-size: 10
       max-active: 100
       min-idle: 10
